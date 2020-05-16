@@ -5,6 +5,10 @@
             "label": "build",
             "command": "dotnet",
             "type": "process",
+            "group": {
+              "kind": "build",
+              "isDefault": true
+            },
             "args": [
                 "build",
                 "${workspaceFolder}/test/StringCalculator.UnitTests/StringCalculator.UnitTests.csproj",
@@ -14,29 +18,36 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "test",
             "command": "dotnet",
             "type": "process",
+            "group": {
+              "kind": "test",
+              "isDefault": true
+            },
             "args": [
-                "publish",
-                "${workspaceFolder}/test/StringCalculator.UnitTests/StringCalculator.UnitTests.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "test",
+                "${workspaceFolder}/test/StringCalculator.UnitTests/StringCalculator.UnitTests.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "watch",
+            "label": "test with coverage",
             "command": "dotnet",
             "type": "process",
+            "group": {
+              "kind": "test",
+              "isDefault": true
+            },
             "args": [
-                "watch",
-                "run",
+                "test",
                 "${workspaceFolder}/test/StringCalculator.UnitTests/StringCalculator.UnitTests.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=lcov",
+                "/p:CoverletOutput=./lcov.info"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+
     ]
 }
